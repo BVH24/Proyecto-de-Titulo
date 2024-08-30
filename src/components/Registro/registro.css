@@ -1,0 +1,11 @@
+/* Asegúrate de que el contenedor ocupe toda la altura del viewport */
+.min-vh-100 {
+    min-height: 100vh;
+  }
+  
+  /* Estilos para el formulario de registro */
+  .register-form {
+    max-width: 400px; /* Ajusta el ancho máximo del formulario */
+    width: 100%; /* Permite que el formulario use todo el ancho disponible dentro del contenedor */
+  }
+  

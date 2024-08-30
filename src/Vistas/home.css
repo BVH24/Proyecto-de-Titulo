@@ -1,0 +1,41 @@
+/* General Styles */
+body {
+    font-family: calibri, sans-serif;
+    background-color: #f0f4ff; /* Light blue background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.content-container {
+    background-color: #f0f4ff; /* Color de fondo del contenido */
+    padding-top: 100px; /* Espaciado superior para dejar espacio al navbar */
+}
+
+.content {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 2.5rem;
+    color: #1f2847;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tutorial-step {
+    margin-bottom: 20px;
+}
+
+.tutorial-step h3 {
+    font-size: 1.5rem;
+    color: #1f2847;
+}
+
+.tutorial-step img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
