@@ -1,0 +1,35 @@
+.result-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .correct {
+    background-color: lightgreen;
+  }
+  
+  .incorrect {
+    background-color: lightcoral;
+  }
+  
+  .result-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .result-container li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .quiz-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+  }
+  
