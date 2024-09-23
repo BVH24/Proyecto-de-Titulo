@@ -1,22 +1,36 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
-import { app } from '../proyecto/src/firebase'; // Importa la inicialización de Firebase
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
+import { app } from './src/firebase';  // Asegúrate de importar la configuración de Firebase
 
-// Inicializa la autenticación de Firebase
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Función para registrar un nuevo usuario
+// Función para registrar un usuario sin iniciar sesión automáticamente
 export const registerUser = async (email: string, password: string, username: string) => {
-  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  await updateProfile(userCredential.user, { displayName: username }); // Actualizar el perfil del usuario con el nombre de usuario
-  return userCredential;
-};
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    
+    // Actualizar el perfil del usuario con el nombre de usuario
+    await updateProfile(user, {
+      displayName: username,
+    });
 
-// Función para iniciar sesión
-export const loginUser = (email: string, password: string) => {
-  return signInWithEmailAndPassword(auth, email, password);
-};
+    // Crear una colección de usuarios en Firestore
+    await setDoc(doc(db, "usuarios", user.uid), {
+      uid: user.uid,
+      email: user.email,
+      displayName: username,
+    });
 
-// Función para cerrar sesión
-export const logoutUser = () => {
-  return signOut(auth);
+    // Cerrar sesión inmediatamente después del registro
+    await auth.signOut();
+
+    // Retornar éxito (o un mensaje que puedas manejar en el componente de registro)
+    return { success: true };
+
+  } catch (error) {
+    console.error("Error al registrar usuario:", error);
+    throw error;
+  }
 };

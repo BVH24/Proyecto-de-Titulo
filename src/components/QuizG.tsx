@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { collection, getDocs, query } from 'firebase/firestore';
-import { db } from '../firebase';
+import { collection, addDoc, getDocs, query } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';  // Importamos la autenticación de Firebase
+import { db } from '../firebase';  // Configuración de Firestore
 import './quizg.css';
 
 const QuizDisplay: React.FC = () => {
@@ -14,6 +15,9 @@ const QuizDisplay: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
+  const auth = getAuth();  // Obtener la instancia de autenticación
+  
+  const user = auth.currentUser;  // Obtener el usuario autenticado
 
   // Si los datos de 'state' no están disponibles, muestra un mensaje de error y redirige
   useEffect(() => {
@@ -50,43 +54,45 @@ const QuizDisplay: React.FC = () => {
     }
   }, [selectedUnit, numberOfQuestions]);
 
-  const handleAnswer = (isCorrect: boolean, selectedAnswer: string) => {
-    const currentQuestion = questions[currentQuestionIndex];
-  
-    // Actualizamos answeredQuestions inmediatamente después de responder
-    const updatedAnsweredQuestions = [
-      ...answeredQuestions,
-      {
-        ...currentQuestion,
-        isCorrect,
-        selectedAnswer,
-      },
-    ];
-  
+  const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
-      // Aumentamos la puntuación
-      setScore((prevScore) => prevScore + 1);
+      setScore(score + 1);
     }
-  
+
     const nextIndex = currentQuestionIndex + 1;
-  
-    // Si hemos llegado al final del quiz
+    setAnsweredQuestions([...answeredQuestions, questions[currentQuestionIndex]]);
+
+    // Verificar si se ha llegado al número de preguntas
     if (nextIndex >= numberOfQuestions) {
-      // Redirigir a la página de resultados con las respuestas actualizadas
-      navigate('/quiz-result', {
-        state: {
-          score: isCorrect ? score + 1 : score, // Aseguramos que el score se pase correctamente
-          total: numberOfQuestions,
-          answeredQuestions: updatedAnsweredQuestions,
-        },
-      });
+      // Guardar el historial del quiz al finalizar
+      saveQuizHistory(score + (isCorrect ? 1 : 0));  // Sumamos el puntaje correcto antes de guardar
     } else {
-      // Pasamos a la siguiente pregunta
-      setAnsweredQuestions(updatedAnsweredQuestions); // Actualizamos el estado de las respuestas
+      // Cambiar a la siguiente pregunta
       setCurrentQuestionIndex(nextIndex);
     }
   };
-  
+
+  // Función para guardar el historial del quiz en Firestore
+  const saveQuizHistory = async (finalScore: number) => {
+    if (user) {
+      try {
+        const userQuizCollection = collection(db, `users/${user.uid}/quizzesRealizados`);
+        await addDoc(userQuizCollection, {
+          unidad: selectedUnit,
+          puntaje: finalScore,
+          totalPreguntas: numberOfQuestions,
+          fecha: new Date(),
+          respuestas: answeredQuestions
+        });
+        navigate('/quiz-result', { state: { score: finalScore, total: numberOfQuestions } });
+      } catch (error) {
+        console.error('Error guardando el historial del quiz:', error);
+        setError('Hubo un error al guardar el historial del quiz.');
+      }
+    } else {
+      console.error('Usuario no autenticado');
+    }
+  };
 
   if (loading) {
     return <p>Cargando preguntas...</p>;
@@ -112,7 +118,7 @@ const QuizDisplay: React.FC = () => {
             {currentQuestion.Alternativas.map((opcion: string, index: number) => (
               <li
                 key={index}
-                onClick={() => handleAnswer(index === currentQuestion.respuesta_correcta, opcion)}
+                onClick={() => handleAnswer(index === currentQuestion.respuesta_correcta)}
               >
                 {opcion}  {/* Mostramos las opciones de la pregunta */}
               </li>
