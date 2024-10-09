@@ -1,41 +1,36 @@
-/* General Styles */
+/* Ajuste del contenedor principal */
+.content-container {
+    margin-top: 80px; /* Ajustar para que coincida con el tamaño del navbar */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Fondo ajustado para todas las vistas */
 body {
-    font-family: calibri, sans-serif;
-    background-color: #f0f4ff; /* Light blue background */
-    color: #333;
+    background-size: cover;
+    background-position: center;  /* Centrar la imagen de fondo */
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.content-container {
-    background-color: #f0f4ff; /* Color de fondo del contenido */
-    padding-top: 100px; /* Espaciado superior para dejar espacio al navbar */
+/* Estilo para el contenido de la página */
+.page-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 90%; /* Asegura que se vea bien en pantallas pequeñas */
+    max-width: 1200px; /* Limita el ancho en pantallas grandes */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
 }
 
-.content {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.heading {
-    font-size: 2.5rem;
-    color: #1f2847;
-    text-align: center;
+h1 {
+    font-size: 3rem;
     margin-bottom: 20px;
 }
 
-.tutorial-step {
-    margin-bottom: 20px;
-}
-
-.tutorial-step h3 {
-    font-size: 1.5rem;
-    color: #1f2847;
-}
-
-.tutorial-step img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }

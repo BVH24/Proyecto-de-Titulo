@@ -1,20 +1,21 @@
-.custom-navbar {
-  background-color: #1f2a44;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100px; /* Altura consistente */
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
 
 .navbar {
-  padding: 0 20px;
-  height: 100px;
+  max-width: 1300px; /* Limitar el ancho del navbar */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: #1f2a44; /* Color de fondo del navbar */
+  padding: 50px 30px; /* Reducir el padding para disminuir la altura */
+  height: 40px; /* Establecer una altura fija más baja */
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Distribuye el contenido */
+  align-items: center; /* Alinear el contenido verticalmente */
+}
+
+.navbar a {
+  font-size: 16px; /* Ajustar el tamaño del texto si es necesario */
 }
 
 .navbar-toggler {
@@ -28,19 +29,19 @@
 .navbar-nav {
   display: flex;
   align-items: center;
-  justify-content: space-around; /* Cambiado a 'space-around' para distribuir los botones */
-  width: 100%; /* Ocupa todo el ancho disponible */
+  justify-content: space-around;
+  width: 100%;
 }
 
 .user-icon {
   font-size: 2.5rem !important;
   margin-right: 20px !important;
   padding: 10px !important;
-  color: #ffffff; /* Asegúrate de que sea visible */
+  color: #ffffff;
 }
 
 .user-icon:hover {
-  color: #f0a500 !important; /* Cambiar el color cuando se pasa el mouse */
+  color: #f0a500 !important;
 }
 
 .menu {
@@ -64,18 +65,28 @@
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .navbar-nav {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* Usuario dropdown styles */
+#user-dropdown {
+  font-size: 1.5rem;
+  color: #ffffff; /* Color blanco */
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .user-icon {
-    font-size: 2rem !important;
-  }
+#user-dropdown .dropdown-toggle::after {
+  border-top-color: #ffffff; /* Flecha del dropdown en blanco */
+}
 
-  .nav-link {
-    font-size: 1.2rem !important;
-    padding: 10px !important;
-  }
+.navbar .dropdown-menu {
+  background-color: #1f2a44; /* Fondo del dropdown igual al navbar */
+  border: none;
+}
+
+.navbar .dropdown-item {
+  color: #ffffff; /* Opciones del dropdown en blanco */
+  font-weight: bold;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #f0a500; /* Fondo al pasar el cursor */
 }

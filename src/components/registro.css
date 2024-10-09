@@ -1,11 +1,48 @@
+/* Registro.css - Clases específicas para la vista de registro */
+
 /* Asegúrate de que el contenedor ocupe toda la altura del viewport */
-.min-vh-100 {
-    min-height: 100vh;
-  }
-  
-  /* Estilos para el formulario de registro */
-  .register-form {
-    max-width: 400px; /* Ajusta el ancho máximo del formulario */
-    width: 100%; /* Permite que el formulario use todo el ancho disponible dentro del contenedor */
-  }
-  
+.register-min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Estilos para el formulario de registro */
+.register-form {
+  max-width: 400px; /* Ajusta el ancho máximo del formulario */
+  width: 100%; /* Permite que el formulario use todo el ancho disponible dentro del contenedor */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.register-input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.register-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #004494;
+}
+
+.register-link {
+  color: #0056b3;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}

@@ -54,18 +54,30 @@ const QuizDisplay: React.FC = () => {
     }
   }, [selectedUnit, numberOfQuestions]);
 
-  const handleAnswer = (isCorrect: boolean) => {
+  const handleAnswer = (isCorrect: boolean, selectedAnswer: string) => {
+    // Actualizamos el array de respuestas con la respuesta actual
+    const updatedAnswers = [
+      ...answeredQuestions,
+      {
+        ...questions[currentQuestionIndex],
+        isCorrect,
+        selectedAnswer,  // Guardamos la respuesta seleccionada
+      },
+    ];
+
+    setAnsweredQuestions(updatedAnswers);  // Actualizamos el estado con todas las respuestas
+
+    // Sumamos al puntaje si es correcto
     if (isCorrect) {
       setScore(score + 1);
     }
 
     const nextIndex = currentQuestionIndex + 1;
-    setAnsweredQuestions([...answeredQuestions, questions[currentQuestionIndex]]);
 
     // Verificar si se ha llegado al número de preguntas
     if (nextIndex >= numberOfQuestions) {
-      // Guardar el historial del quiz al finalizar
-      saveQuizHistory(score + (isCorrect ? 1 : 0));  // Sumamos el puntaje correcto antes de guardar
+      // Guardar el historial del quiz al finalizar con todas las respuestas
+      saveQuizHistory(score + (isCorrect ? 1 : 0), updatedAnswers);  // Pasamos las respuestas actualizadas
     } else {
       // Cambiar a la siguiente pregunta
       setCurrentQuestionIndex(nextIndex);
@@ -73,7 +85,7 @@ const QuizDisplay: React.FC = () => {
   };
 
   // Función para guardar el historial del quiz en Firestore
-  const saveQuizHistory = async (finalScore: number) => {
+  const saveQuizHistory = async (finalScore: number, updatedAnswers: any[]) => {
     if (user) {
       try {
         const userQuizCollection = collection(db, `users/${user.uid}/quizzesRealizados`);
@@ -82,9 +94,9 @@ const QuizDisplay: React.FC = () => {
           puntaje: finalScore,
           totalPreguntas: numberOfQuestions,
           fecha: new Date(),
-          respuestas: answeredQuestions
+          respuestas: updatedAnswers,  // Guardamos todas las respuestas correctamente
         });
-        navigate('/quiz-result', { state: { score: finalScore, total: numberOfQuestions } });
+        navigate('/quiz-completion', { state: { score: finalScore, total: numberOfQuestions } }); // Cambiar la ruta a `quiz-completion`
       } catch (error) {
         console.error('Error guardando el historial del quiz:', error);
         setError('Hubo un error al guardar el historial del quiz.');
@@ -113,14 +125,14 @@ const QuizDisplay: React.FC = () => {
           {currentQuestion.ImagenURL && (
             <img src={currentQuestion.ImagenURL} alt="Imagen de la pregunta" className="quiz-image" />
           )}
-          <p>{currentQuestion.texto}</p>  {/* Mostramos el texto de la pregunta */}
+          <p>{currentQuestion.texto}</p> 
           <ul>
             {currentQuestion.Alternativas.map((opcion: string, index: number) => (
               <li
                 key={index}
-                onClick={() => handleAnswer(index === currentQuestion.respuesta_correcta)}
+                onClick={() => handleAnswer(index === currentQuestion.respuesta_correcta, opcion)}
               >
-                {opcion}  {/* Mostramos las opciones de la pregunta */}
+                {opcion} 
               </li>
             ))}
           </ul>

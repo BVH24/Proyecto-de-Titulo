@@ -1,11 +1,48 @@
-/* Asegúrate de que el contenedor ocupe toda la altura del viewport */
-.min-vh-100 {
-    min-height: 100vh;
-  }
-  
-  /* Estilos para el formulario */
-  .login-form {
-    max-width: 400px; /* Ajusta el ancho máximo del formulario */
-    width: 100%; /* Permite que el formulario use todo el ancho disponible dentro del contenedor */
-  }
-  
+.login-container {
+  display: flex;
+  justify-content: flex-start; /* Alineamos el contenedor hacia la izquierda inicialmente */
+  align-items: center;
+  height: 100vh;
+  margin-left: 200px; /* Mover el contenedor más a la derecha */
+}
+
+.login-form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.login-input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #004494;
+}
+
+.login-link {
+  color: #0056b3;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
