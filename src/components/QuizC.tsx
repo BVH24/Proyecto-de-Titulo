@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './quizc.css';
 
 const QuizCompletion: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { score, total } = location.state || {};  // Obtenemos el puntaje y total de preguntas desde el estado
+  const { score, total } = location.state || {};  
 
   return (
     <div className="quiz-completion-container">

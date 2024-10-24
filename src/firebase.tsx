@@ -2,10 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';  // Importa Firestore
-import { getStorage } from 'firebase/storage'; // Importa Storage
+import { getFirestore } from 'firebase/firestore'; 
+import { getStorage } from 'firebase/storage';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyABB9gar3-3ZP-Mw_puKc-5B2dI9MRJ66E",
   authDomain: "quiz-math-444b4.firebaseapp.com",
@@ -16,12 +15,11 @@ const firebaseConfig = {
   measurementId: "G-9TQD0Q5J1X"
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const db = getFirestore(app);  // Inicializa Firestore
-const storage = getStorage(app); // Inicializa Storage
+const db = getFirestore(app);  
+const storage = getStorage(app); 
 
-// Exportamos app, auth, db y storage para poder usarlos en otros archivos
 export { app, auth, db, storage };

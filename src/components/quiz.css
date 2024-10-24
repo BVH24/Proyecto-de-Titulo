@@ -1,18 +1,75 @@
-/* Estilo para el contenedor principal, ahora más visible */
-.quiz-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+/* Estilo del contenedor principal para el QuizGenerator */
+.quiz-generator-container {
   background-color: #ffffff;
-  border-radius: 8px;
-  border: 2px solid #007bff; /* Borde más visible */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 50px auto; /* Centrando el contenedor en la página */
+  margin-left: 300px; /* Mover hacia la derecha */
 }
 
-/* Título principal */
-.quiz-container h2 {
+/* Título del formulario */
+.quiz-generator-title {
+  text-align: center;
+  color: #333;
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #333333;
+}
+
+/* Estilo para los mensajes de error */
+.quiz-generator-error {
+  color: red;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Estilos de los inputs del formulario */
+.quiz-generator-form label {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Estilo del select para las unidades */
+.quiz-generator-form select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 1rem;
+}
+
+/* Botón de generar quiz */
+.quiz-generator-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Efecto hover en el botón */
+.quiz-generator-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .quiz-generator-container {
+    max-width: 100%;
+    padding: 20px;
+    margin-left: 0; /* Evitar que se desplace a la derecha en pantallas pequeñas */
+  }
+
+  .quiz-generator-title {
+    font-size: 1.8rem;
+  }
+
+  .quiz-generator-form select,
+  .quiz-generator-button {
+    font-size: 1rem;
+  }
 }

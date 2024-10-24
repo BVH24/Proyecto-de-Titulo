@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../Auth';  // Importa la función desde Auth.tsx
-import './registro.css';  // Archivo de estilos para el formulario de registro
+import { registerUser } from '../../Auth'; 
+import './registro.css';  
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');  // Agrega el estado para el nombre de usuario
+  const [username, setUsername] = useState('');  
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // Llamar a la función registerUser
       const result = await registerUser(email, password, username);
 
       if (result.success) {
-        // Si el registro fue exitoso, redirigir a la página de inicio de sesión
         navigate('/login', { state: { message: 'Registro exitoso. Ahora puedes iniciar sesión.' } });
       }
     } catch (error) {

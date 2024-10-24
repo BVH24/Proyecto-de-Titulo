@@ -1,36 +1,136 @@
 /* Ajuste del contenedor principal */
-.content-container {
-    margin-top: 80px; /* Ajustar para que coincida con el tamaño del navbar */
-    padding: 20px;
+.quiz-math-content-container {
+    margin-top: 100px; /* Ajusta según la altura del navbar */
+    padding: 10px;
     text-align: center;
+    animation: quizMathFadeIn 1s ease-in-out;
 }
 
-/* Fondo ajustado para todas las vistas */
-body {
-    background-size: cover;
-    background-position: center;  /* Centrar la imagen de fondo */
+/* Contenedor superior para el cuadro grande */
+.quiz-math-box-large {
+    width: 90vw; /* Ocupa el 100% del ancho de la ventana */
+    height: 300px; /* Mantén la altura fija */
+    background-color: #1e2a37;
+    border: 2px solid #000;
+    border-radius: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: quizMathSlideIn 1.2s ease-in-out;
+    overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+    box-sizing: border-box; /* Incluye los bordes y padding en el tamaño total */
+}
+
+/* Estilos para la imagen dentro del contenedor grande */
+.quiz-math-large-image {
+    width: 30%; /* Ocupa todo el ancho del contenedor */
+    height: 100%; /* Ocupa toda la altura del contenedor */
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor sin deformarse */
+    border-radius: 30px; /* Mantiene el borde redondeado */
+    animation: quizMathImageFadeIn 1.2s ease-in-out; /* Animación para la imagen */
+}
+
+/* Animación para la imagen */
+@keyframes quizMathImageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Contenedor inferior para los cuadros pequeños */
+.quiz-math-container-lower {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.quiz-math-box-small {
+    width: 100%;
+    height: 300px;
+    background-color: #f0f4f8;
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: quizMathSlideIn 1.5s ease-in-out;
+}
+
+.quiz-math-image {
+    height: 70%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #000;
+}
+
+
+.quiz-math-box-image {
+    width: 100%; 
+    height: 100%; /* Hace que cubra todo el contenedor */
+    object-fit: cover; /* La imagen se ajustará al contenedor, pero podría cortar partes de la imagen */
+    border-radius: 15px 15px 0 0;
+}
+
+
+
+.quiz-math-info {
+    padding: 20px;
+    background-color: #d1d1d1;
+    color: #1400c4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    height: 100%;
+    border: 2px solid #000; /* Agregar borde negro */
+}
+
+.quiz-math-info p {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.quiz-math-info ul {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    padding-left: 0;
+    list-style: none;
 }
 
-/* Estilo para el contenido de la página */
-.page-content {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px;
-    border-radius: 15px;
-    display: inline-block;
-    width: 90%; /* Asegura que se vea bien en pantallas pequeñas */
-    max-width: 1200px; /* Limita el ancho en pantallas grandes */
-    margin: 0 auto; /* Centra el contenido horizontalmente */
+.quiz-math-info ul li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    line-height: 1.4;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+
+
+/* Animación para fade-in */
+@keyframes quizMathFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+/* Animación para el deslizamiento */
+@keyframes quizMathSlideIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

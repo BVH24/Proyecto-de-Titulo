@@ -1,47 +1,65 @@
-.quiz-container {
-  max-width: 800px;
+/* Contenedor principal del Quiz */
+.quizg-container {
+  max-width: 900px; 
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px; /* Incrementamos el padding para más espacio */
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; 
+  margin-left: 200px;
+  min-height: 500px; 
+  max-height: 600px; 
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 30px;
 }
 
-.question-card {
-  margin-bottom: 20px;
+/* Tarjeta de la pregunta */
+.quizg-question-card {
+  background-color: #ffffff;
+  padding: 25px; /* Incrementamos el padding para más espacio */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 85%;
+  max-width: 800px; 
+  min-height: 350px; 
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30px; /* Más espacio debajo de las preguntas */
 }
 
-.quiz-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 10px 0;
+/* Pregunta */
+.quizg-question-card p {
+  margin: 0 0 15px; /* Más espacio debajo de la pregunta */
+  font-size: 1.1rem; 
+  color: #333;
 }
 
-ul {
+/* Lista de respuestas */
+.quizg-options-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0px; /* Incrementamos el espacio entre opciones */
 }
 
-li {
+/* Opción de respuesta */
+.quizg-option {
   background-color: #e0e0e0;
-  padding: 10px;
-  margin-bottom: 5px;
+  padding: 15px; /* Aumentamos el padding para más espacio en las opciones */
+  margin-bottom: 15px; /* Espacio entre opciones */
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-li:hover {
-  background-color: #bdbdbd;
-}
-
-.correct {
-  background-color: lightgreen !important;
-  border: 2px solid #4caf50;
-}
-
-.incorrect {
-  background-color: lightcoral !important;
-  border: 2px solid #f44336;
+  text-align: center;
+  font-size: 1rem;
 }

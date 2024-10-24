@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './quizr.css';  // Asegúrate de que el archivo CSS esté en la ruta correcta
+import HeaderWithNavbar from './header/Navbar';
+import './quizr.css'; 
 
 const QuizResult: React.FC = () => {
   const location = useLocation();
-  const { score, total, answeredQuestions } = location.state || {};  // Obtenemos las respuestas del estado
+  const { score, total, answeredQuestions } = location.state || {};  
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -23,6 +24,9 @@ const QuizResult: React.FC = () => {
   };
 
   return (
+    <>
+      <HeaderWithNavbar />
+
     <div className="result-container">
       <h2>Resultados del Quiz</h2>
       <p>Puntuación: {score} / {total}</p>
@@ -55,7 +59,6 @@ const QuizResult: React.FC = () => {
             ))}
           </ul>
 
-          {/* Botones de navegación */}
           <div className="navigation-buttons">
             {currentQuestionIndex > 0 && (
               <button onClick={handlePrevious}>Anterior</button>
@@ -67,6 +70,7 @@ const QuizResult: React.FC = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

@@ -52,12 +52,8 @@ const Perfil: React.FC = () => {
 
   return (
     <>
-      {/* Incluir el Navbar en la parte superior */}
       <HeaderWithNavbar />
-
-      {/* Contenedor general con dos secciones */}
       <div className="profile-page-container">
-        {/* Contenedor para cambiar el nombre de usuario */}
         <div className="profile-card">
           <h2>Perfil de {user?.displayName || 'Usuario'}</h2>
 
@@ -76,7 +72,6 @@ const Perfil: React.FC = () => {
           </div>
         </div>
 
-        {/* Contenedor del historial de quizzes con scroll */}
         <div className="quiz-history-card">
           <h3>Historial de Quizzes</h3>
           {loading ? (

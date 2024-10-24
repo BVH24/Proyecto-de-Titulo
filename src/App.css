@@ -4,31 +4,37 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed; /* Mantiene el fondo fijo mientras haces scroll */
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden; /* Evita que aparezca el scroll si el contenido se desborda */
+    overflow-x: hidden; /* Evitar scroll horizontal */
 }
 
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evitar scroll horizontal */
+    box-sizing: border-box;
+    overflow-y: auto; /* Permite el scroll vertical cuando sea necesario */
 }
 
 .content {
-    padding-top: 80px; /* Ajusta este valor para que el contenido no se superponga con el navbar */
-    padding-left: 20px; /* Puedes agregar padding a los lados si lo prefieres */
+    padding-top: 100px; /* Aumenté este valor para evitar superposición con el navbar */
+    padding-left: 20px;
     padding-right: 20px;
     text-align: center; /* Centra el contenido dentro de la página */
 }
 
 /* Mejora de la visibilidad del contenido sobre el fondo */
 .content-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para resaltar el contenido */
-    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente para resaltar el contenido */
+    padding: 25px;
     border-radius: 10px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Sombra para resaltar */
     max-width: 900px;
     margin: 0 auto; /* Centra horizontalmente el contenido */
 }
@@ -36,11 +42,11 @@ html, body {
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
     .content-container {
-        max-width: 90%;
+        max-width: 95%; /* Hace el contenido más ancho en pantallas pequeñas */
         padding: 15px;
     }
 
     .content {
-        padding-top: 60px;
+        padding-top: 70px; /* Ajusté el padding para pantallas más pequeñas */
     }
 }

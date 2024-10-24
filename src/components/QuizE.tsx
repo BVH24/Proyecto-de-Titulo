@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
+import HeaderWithNavbar from './header/Navbar';
 import './quize.css';
 
 const QuizReview: React.FC = () => {
@@ -33,7 +34,6 @@ const QuizReview: React.FC = () => {
     fetchQuizData();
   }, [user, quizId]);
 
-  // Funciones para navegar entre preguntas
   const handleNext = () => {
     if (quizData && currentQuestionIndex < quizData.respuestas.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -57,6 +57,8 @@ const QuizReview: React.FC = () => {
   const currentQuestion = quizData.respuestas[currentQuestionIndex];
 
   return (
+    <>
+      <HeaderWithNavbar />
     <div className="quiz-review-container">
       <h2>Corrección del Quiz</h2>
       <p>Unidad: {quizData.unidad}</p>
@@ -74,9 +76,9 @@ const QuizReview: React.FC = () => {
               key={index}
               className={
                 index === currentQuestion.respuesta_correcta
-                  ? 'correct-answer' // Verde para la respuesta correcta
+                  ? 'correct-answer'
                   : opcion === currentQuestion.selectedAnswer
-                  ? 'incorrect-answer' // Rojo para la respuesta seleccionada incorrecta
+                  ? 'incorrect-answer'
                   : ''
               }
             >
@@ -95,6 +97,7 @@ const QuizReview: React.FC = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

@@ -8,10 +8,10 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, text }) => {
   return (
-    <div className="card">
-      <div className="card-title">{title}</div>
-      <div className="card-content">
-        <p className="card-text">{text}</p>
+    <div className="card-item">
+      <div className="card-item-title">{title}</div>
+      <div className="card-item-content">
+        <p className="card-item-text">{text}</p>
       </div>
     </div>
   );

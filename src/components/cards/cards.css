@@ -1,4 +1,6 @@
-.card {
+/* Evitar conflictos agregando un prefijo específico a cada clase */
+
+.cards-container {
   background-color: #f3b600;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -7,12 +9,12 @@
   cursor: pointer;
 }
 
-.card:hover {
+.cards-container:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.card-title {
+.cards-title {
   font-size: 1.5rem;
   font-weight: bold;
   color: #6b123a;
@@ -20,11 +22,11 @@
   text-align: center;
 }
 
-.card-content {
+.cards-content {
   display: none;
 }
 
-.card:hover .card-content {
+.cards-container:hover .cards-content {
   display: block;
   font-size: 1rem;
   color: #333;
